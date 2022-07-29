@@ -250,7 +250,7 @@ ggsave(
     "urban_classification.png"
   ),
   height = 10,
-  width = 6.25,
+  width = 6.5,
   units = "in"
 )
 
