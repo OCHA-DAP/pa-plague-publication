@@ -50,7 +50,8 @@ p_urb <- ggplot(
     title = "Weekly cases of pneumonic plague in urban areas of Madagascar",
     y = "Total cases",
     x = ""
-  )
+  ) +
+  scale_y_continuous_hdx()
 
 ggsave(
   plot = p_urb,
@@ -81,7 +82,8 @@ p_country <- ggplot(
     title = "Weekly cases of pneumonic and bubonic plague in Madagascar",
     y = "Total cases",
     x = ""
-  )
+  ) +
+  scale_y_continuous_hdx()
 
 ggsave(
   plot = p_country,
@@ -157,6 +159,7 @@ p_rolling <- ggplot() +
     angle = 278,
     fontface = "bold"
   ) +
+  scale_y_continuous_hdx() +
   labs(
     y = "Total cases",
     x = "",
@@ -383,7 +386,8 @@ p_triggers <- df_triggers %>%
     ),
     hjust = 0,
     size = 3
-  )
+  ) +
+  scale_y_continuous_hdx()
 
 ggsave(
   plot = p_triggers,
@@ -509,7 +513,8 @@ p_flags <- df_country %>%
     ),
     label = "Trigger\nperiods",
     hjust = 0
-  )
+  ) +
+  scale_y_continuous_hdx()
 
 ggsave(
   plot = p_flags,
