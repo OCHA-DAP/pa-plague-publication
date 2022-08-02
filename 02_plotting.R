@@ -59,8 +59,8 @@ ggsave(
     dir_plot_save,
     "urban_cases.png"
   ),
-  height = 3,
-  width = 8,
+  height = 2.5,
+  width = 7,
   units = "in"
 )
 
@@ -91,8 +91,8 @@ ggsave(
     dir_plot_save,
     "country_cases.png"
   ),
-  height = 3,
-  width = 8,
+  height = 2.5,
+  width = 7,
   units = "in"
 )
 
@@ -357,8 +357,8 @@ p_triggers <- df_triggers %>%
   ) +
   geom_segment(
     data = data.frame(
-      x = as.Date(c("2017-08-21", "2017-08-21")),
-      xend = as.Date(as.Date(c("2017-09-11", "2017-09-18"))),
+      x = as.Date(c("2017-09-11", "2017-09-18")),
+      xend = as.Date(c("2017-09-11", "2017-09-18")),
       y = c(50, 200),
       yend = c(5, 52),
       type = c("urban", "country")
@@ -374,7 +374,7 @@ p_triggers <- df_triggers %>%
   geom_label_hdx(
     data = data.frame(
       cases = c(50, 200),
-      date = as.Date(c("2017-07-10", "2017-07-10")),
+      date = as.Date(c("2017-09-12", "2017-09-19")),
       type = c("urban", "country"),
       label = c(
         str_wrap("Trigger based on urban caseloads would have triggered a week earlier around the 11th of September.", width = 40),
@@ -384,7 +384,7 @@ p_triggers <- df_triggers %>%
     mapping = aes(
       label = label
     ),
-    hjust = 0,
+    hjust = 1,
     size = 3
   ) +
   scale_y_continuous_hdx()
@@ -396,7 +396,7 @@ ggsave(
     "trigger_points.png"
   ),
   width = 8,
-  height = 6,
+  height = 4,
   units = "in"
 )
 
@@ -522,8 +522,8 @@ ggsave(
     dir_plot_save,
     "flag_comparisons.png"
   ),
-  height = 7,
-  width = 10,
+  height = 4,
+  width = 8,
   units = "in"
 )
 
