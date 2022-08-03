@@ -527,4 +527,87 @@ ggsave(
   units = "in"
 )
 
-  
+###################
+#### DEVIATION ####
+###################
+
+p_dev <- df_country %>%
+  filter(
+    year != 2017
+  ) %>%
+  group_by(
+    week
+  ) %>%
+  summarize(
+    cases_mean = mean(cases, na.rm = TRUE),
+    cases_sd = sd(cases, na.rm = TRUE),
+    cases_164_above = cases_mean + 1.64 * cases_sd,
+    .groups = "drop"
+  ) %>%
+  ggplot(
+    aes(
+      x = week
+    )
+  ) +
+  geom_line(
+    aes(
+      y = cases_mean
+    ),
+    color = hdx_hex("tomato-hdx"),
+    lwd = 1.5
+  ) +
+  geom_ribbon(
+    aes(
+      ymin = cases_mean,
+      ymax = cases_164_above
+    ),
+    fill = hdx_hex("tomato-light")
+  ) +
+  scale_y_continuous_hdx() +
+  scale_x_continuous(
+    breaks = seq(1, 53, 12),
+    labels = ~ month(as.Date(paste0("2021-", .x, "-1"), "%Y-%U-%u"), label = TRUE)
+  ) +
+  labs(
+    y = "Cases",
+    x = "",
+    title = "Mean and standard deviation of plague cases throughout the year",
+    subtitle = "2012 - 2016 and 2018-2022, excluding the outbreak year of 2017"
+  ) +
+  geom_text(
+    data = data.frame(
+      week = 2,
+      y = 3,
+      label = "Mean"
+    ),
+    mapping = aes(
+      y = y,
+      label = label
+    ),
+    color = hdx_hex("tomato-hdx"),
+    fontface = "bold"
+  ) +
+  geom_text(
+    data = data.frame(
+      week = 8,
+      y = 15,
+      label = "Mean +\n1.64 std. dev."
+    ),
+    mapping = aes(
+      y = y,
+      label = label
+    ),
+    color = hdx_hex("tomato-light"),
+    fontface = "bold"
+  )
+
+ggsave(
+  plot = p_dev,
+  filename = file.path(
+    dir_plot_save,
+    "case_deviations.png"
+  ),
+  height = 3,
+  width = 8,
+  units = "in"
+)
