@@ -163,7 +163,7 @@ p_rolling <- ggplot() +
   labs(
     y = "Total cases",
     x = "",
-    fill = "",
+    fill = "Maximum cases\nreported in period",
     title = "Pneumonic and bubonic plague cases in Madagascar",
     subtitle = "Rolling sum of cases in the past 3 weeks"
   )
